@@ -8,10 +8,11 @@ FONT = ("Courier", 22)
 initial_start = True
 original_word = None
 translation = None
+timer= "3"
+
 
 language_file = "freq_span.csv"
 translations_df = pd.read_csv(language_file)
-
 
 def get_words():
     """Returns the word and its translation."""
@@ -38,9 +39,6 @@ def display_front():
     timer = mainWindow.after(3000,display_back)
 
 
-
-
-
 def display_back():
     """Displays the back of the card-which is the translated word"""
   
@@ -48,16 +46,11 @@ def display_back():
     cardCanvas.itemconfig(card_word, text=translation, fill="white")
     cardCanvas.itemconfig(card_side, image= new_back)
 
-    
-
 
 mainWindow = tkinter.Tk()
 mainWindow.config(background=MAIN_BCG)
 mainWindow.title("Flipper")
 mainWindow["pady"] = 18
-
-timer= "3"
-
 
 mainWindow.minsize(width=600, height=500)
 mainWindow.rowconfigure(0, weight=1)
@@ -78,7 +71,6 @@ new_front = ImageTk.PhotoImage(resized_front_img)
 back_img= Image.open("images/card_back.png")
 resized_back_img = back_img.resize((width,height))
 new_back = ImageTk.PhotoImage(resized_back_img)
-
 
 cardCanvas = tkinter.Canvas(mainWindow, width=500,
                             height=350, background=MAIN_BCG, highlightthickness=0)
